@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo Profesional - Portafolio de Hojas de Vida</title>
+    <style>
+        /* Definición de variables CSS para colores, facilitando la personalización del tema */
+        :root {
+            --primary-color: #2c3e50; /* Color principal, oscuro */
+            --secondary-color: #3498db; /* Color secundario, azul */
+            --accent-color: #e74c3c; /* Color de acento, rojo */
+            --light-color: #ecf0f1; /* Color claro */
+            --dark-color: #2c3e50; /* Color oscuro (similar al primario) */
+        }
+
+        /* Reseteo básico de estilos para todos los elementos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Incluye padding y border en el ancho/alto total */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente por defecto */
+        }
+
+        /* Estilos generales del cuerpo de la página */
+        body {
+            background-image: url('https://png.pngtree.com/background/20220730/original/pngtree-white-and-grey-abstract-background-with-line-dot-network-graphic-design-picture-image_1883588.jpg'); /* Agrega la imagen de fondo */
+            background-size: cover; /* Ajusta la imagen para cubrir todo el cuerpo */
+            background-position: center; /* Centra la imagen de fondo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+            color: #333; /* Color de texto oscuro */
+            line-height: 1.6; /* Espaciado entre líneas */
+        }
+
+        /* Estilos del encabezado principal de la página */
+        header {
+            background-color: var(--primary-color); /* Usa el color primario */
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Sección hero (banner principal) */
+        .hero {
+            /* Fondo con gradiente y imagen de placeholder */
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contenedor principal para centrar contenido y aplicar padding horizontal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sección del equipo */
+        .team-section {
+            padding: 4rem 0;
+        }
+
+        /* Título de sección genérico */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            position: relative;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        /* Línea decorativa debajo del título de sección */
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* Grid para mostrar los miembros del equipo */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columnas responsivas */
+            gap: 2rem;
+        }
+
+        /* Estilos de cada tarjeta de miembro del equipo */
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s; /* Transición suave para hover */
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px); /* Efecto de levantamiento al pasar el ratón */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Contenedor de la foto del miembro */
+        .member-photo {
+            height: 250px;
+            width: 100%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+        }
+
+        /* Información textual del miembro */
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-info .title {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .member-info .bio {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Botón para ver el perfil completo */
+        .view-profile-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .view-profile-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilos para el botón de Descargar CV */
+        .download-cv-btn {
+            display: inline-block;
+            background-color: var(--accent-color); /* Color de acento (rojo) */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-top: 1rem; /* Espacio superior para separarlo del botón "Ver Perfil Completo" */
+        }
+
+        .download-cv-btn:hover {
+            background-color: #c0392b; /* Un tono más oscuro de rojo al pasar el ratón */
+        }
+
+        /* Estilos para el modal (ventana emergente) */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Fijo en la pantalla */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8); /* Fondo semitransparente oscuro */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            overflow-y: auto; /* Permite scroll vertical si el contenido es largo */
+            padding: 2rem 0;
+        }
+
+        /* Contenido dentro del modal */
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            margin: 2rem auto; /* Centra el modal */
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Botón para cerrar el modal */
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Encabezado del perfil dentro del modal */
+        .profile-header {
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Foto de perfil dentro del modal */
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Forma circular */
+            overflow: hidden;
+            border: 4px solid white;
+            margin-right: 2rem;
+            flex-shrink: 0; /* Evita que la imagen se encoja */
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        /* Información de contacto en el perfil */
+        .profile-contact {
+            display: flex;
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en líneas nuevas */
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-contact a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Estilos para los botones de navegación de pestañas en el perfil */
+        .profile-tabs {
+            display: flex;
+            background-color: var(--light-color);
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s, border-bottom-color 0.3s;
+            color: var(--dark-color);
+        }
+
+        /* Estilo para la pestaña activa */
+        .tab-btn.active {
+            background-color: white;
+            border-bottom: 3px solid var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Contenido de las pestañas del perfil */
+        .profile-content {
+            padding: 2rem;
+        }
+
+        .tab-content {
+            display: none; /* Oculto por defecto */
+        }
+
+        .tab-content.active {
+            display: block; /* Muestra el contenido de la pestaña activa */
+        }
+
+        /* Sección de contenido genérica dentro de las pestañas */
+        .content-section {
+            margin-bottom: 2rem;
+        }
+
+        .content-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Estilos para ítems de experiencia, educación, etc. */
+        .experience-item, .education-item, .portfolio-item-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-item h4, .education-item h4, .portfolio-item-details h4 {
+            margin-bottom: 0.3rem;
+            color: var(--dark-color);
+        }
+
+        /* Metadatos (ej. empresa, fechas) */
+        .experience-meta, .education-meta, .portfolio-meta {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Listas de puntos en experiencia */
+        .experience-item ul {
+            list-style-position: outside;
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .experience-item ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Grid para habilidades */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Ítem individual de habilidad */
+        .skill-item {
+            background-color: #f9f9f9;
+            padding: 0.8rem;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Barra de progreso de habilidad */
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: var(--secondary-color);
+        }
+
+        /* Lista de habilidades blandas o referencias */
+        .soft-skills-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .soft-skills-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Estilos de tabla (para certificaciones) */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Elimina el espacio entre celdas */
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f0f4f8;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(even) { /* Color de fondo para filas pares */
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+        table a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        table a:hover {
+            text-decoration: underline;
+        }
+
+        /* Grid para la sección de portafolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Tarjeta de proyecto en el portafolio */
+        .portfolio-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .portfolio-item-details {
+            padding: 1rem;
+        }
+        .portfolio-item-details h4 {
+            font-size: 1.1rem;
+        }
+
+        /* Sección de contacto */
+        .contact-section {
+            padding: 4rem 0;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto; /* Centra el formulario */
+        }
+
+        /* Grupo de formulario (label + input/textarea) */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical; /* Permite redimensionar verticalmente */
+        }
+
+        /* Botón de envío del formulario */
+        .submit-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Media Queries para diseño responsivo */
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr; /* Una sola columna para miembros del equipo en pantallas pequeñas */
+            }
+
+            .profile-header {
+                flex-direction: column; /* Apila elementos del encabezado de perfil */
+                text-align: center;
+            }
+
+            .profile-pic {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .profile-tabs {
+                flex-wrap: wrap; /* Permite que las pestañas se envuelvan */
+            }
+
+            .tab-btn {
+                padding: 0.8rem 1rem;
+                flex: 1 1 auto; /* Las pestañas ocupan el espacio disponible */
+                text-align: center;
+                font-size: 0.9rem;
+            }
+             .portfolio-grid {
+                grid-template-columns: 1fr; /* Una sola columna para proyectos en pantallas pequeñas */
+            }
+        }
+         @media (max-width: 480px) {
+            .profile-tabs {
+                 flex-direction: column; /* Pestañas apiladas en pantallas muy pequeñas */
+            }
+            .tab-btn {
+                border-bottom: 1px solid #ddd;
+            }
+            .tab-btn.active {
+                border-bottom: 3px solid var(--secondary-color);
+            }
+         }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Grupo Profesional</h1>
+            <p>Portafolio de Hojas de Vida</p>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Construyendo el futuro juntos</h1>
+            <p>Somos un equipo de profesionales talentosos con experiencia en diversas áreas. Conozca nuestro trabajo y experiencia a través de nuestras hojas de vida detalladas.</p>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Equipo</h2>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://i.postimg.cc/W1mb30hP/469041454-10234308663594962-7809298578157412532-n.jpg">
+                    </div>
+                    <div class="member-info">
+                        <h3>PAULA ANDREA SOACHA PERILLA</h3>
+                        <p class="title">Estudiante de Ingenieria de Sistemas</p>
+                        <p class="bio">Profesional con 32 años de edad y una sólida trayectoria en el sector de la informática. Poseo
+experiencia demostrable en desarrollo de software, gestión de proyectos IT, soporte técnico,
+análisis de sistemas, etc. Destacándome por mi capacidad para resolver problemas complejos,
+optimizar procesos y contribuir al éxito de equipos de trabajo.</p>
+                        <a href="#" class="view-profile-btn" data-member="paula">Ver Perfil Completo</a>
+                        <a href="https://drive.google.com/file/d/1ZA11iQj07QPR0r9h5v_2lrp0UUbdZmJ9/view?usp=sharing" class="download-cv-btn" target="_blank">Descargar CV</a>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://i.postimg.cc/85YT3HnL/461536381-10161565977446649-529995703096869089-n.jpg">
+                    </div>
+                    <div class="member-info">
+                        <h3>WALTER FERNANDO VELASQUEZ SANTANA</h3>
+                        <p class="title">Estudiante Ingenieria de Sistemas</p>
+                        <p class="bio">Profesional en formación que se enfoca en el diseño, desarrollo y optimización de sistemas informáticos. Etapa de prendizaje que abarca programación, tecnología y metodologías de resolución de problemas, con un fuerte énfasis en la innovación y la automatización. Además, desarrollo de habilidades analíticas y creativas para aplicar soluciones eficientes en distintos entornos tecnológicos.</p>
+                        <a href="#" class="view-profile-btn" data-member="walter">Ver Perfil Completo</a>
+                        <a href="https://drive.google.com/file/d/1tq_VpDQddGmR8X-oqg6lMDewgQECNZbL/view?usp=sharing" class="download-cv-btn" target="_blank">Descargar CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contáctanos</h2>
+            </div>
+
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Asunto</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Grupo Profesional. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="paula-profile" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" title="Cerrar">&times;</span>
+
+            <div class="profile-header">
+                <div class="profile-pic">
+                    <img src="https://i.postimg.cc/W1mb30hP/469041454-10234308663594962-7809298578157412532-n.jpg" alt="Foto de perfil de Paula Andrea Soacha Perilla">
+                </div>
+                <div class="profile-name">
+                    <h2>Paula Andrea Soacha Perilla</h2>
+                    <p class="profile-title">Ingeniera de Sistemas</p>
+                    <div class="profile-contact">
+                        <a href="mailto:psoacha@ucompensar.edu.co" title="Enviar correo a Paula Andrea Soacha Perilla">psoacha@ucompensar.edu.co</a>
+                        <a href="tel:+57 3103142578" title="Llamar a Paula Andrea Soacha Perilla">+57 3103142578</a>
+                    </div>
+                    </div>
+            </div>
+
+            <nav class="profile-tabs">
+                <button class="tab-btn active" data-tab="summary-paula" aria-selected="true">Resumen</button>
+                <button class="tab-btn" data-tab="experience-paula" aria-selected="false">Experiencia</button>
+                <button class="tab-btn" data-tab="education-paula" aria-selected="false">Educación</button>
+                <button class="tab-btn" data-tab="skills-paula" aria-selected="false">Informacion adicional</button>
+                <button class="tab-btn" data-tab="portfolio-paula" aria-selected="false">Portafolio</button>
+            </nav>
+
+            <div class="profile-content">
+                <div id="summary-paula" class="tab-content active">
+                    <section class="content-section" aria-labelledby="summary-heading-paula">
+                        <h3 id="summary-heading-paula">Resumen Profesional</h3>
+                        <p>Persona responsable, comprometida con mis labores y con gran habilidad de aprender y adaptación a los cambios.</p>
+                        <p><strong>Edad:</strong> 32 AÑOS
+                    </section>
+                </div>
+
+                <div id="experience-paula" class="tab-content">
+    <section class="content-section" aria-labelledby="experience-heading-paula">
+        <h3 id="experience-heading-paula">Experiencia Laboral</h3>
+        <article class="experience-item">
+            <h4>Desarrolladora de Software Senior / Analista de Sistemas</h4>
+            <div class="experience-meta">
+                <span>Nombre de la Empresa de software</span>
+                <span>Actualmente</span>
+            </div>
+            <ul>
+                <li>Desarrollo y mantenimiento de aplicaciones web críticas, logrando una reducción del 15% en los tiempos de carga. </li>
+                <li>Liderazgo en la implementación de nuevas funcionalidades, mejorando la experiencia de usuario según encuestas internas. </li>
+            </ul>
+        </article>
+        <article class="experience-item">
+            <h4>Especialista en Soporte Técnico / Consultora IT</h4>
+            <div class="experience-meta">
+                <span>Nombre de la Empresa telecomunicaciones sas</span>
+                <span>2021</span>
+            </div>
+            <ul>
+                <li>Provisión de soporte técnico avanzado a clientes empresariales, resolviendo más del 90% de las incidencias en el primer contacto. </li>
+                <li>Participación en proyectos de consultoría tecnológica, optimizando la infraestructura de red en varias Pymes. </li>
+            </ul>
+        </article>
+    </section>
+</div>
+
+                <div id="education-paula" class="tab-content">
+    <section class="content-section" aria-labelledby="education-heading-academic-paula">
+        <h3 id="education-heading-academic-paula">Formación Académica</h3>
+        <article class="education-item">
+            <h4>Ingeniera de Sistemas / Tecnóloga en Desarrollo de Software</h4>
+            <div class="education-meta">
+                <span>Universidad Compensar Bogotá, Colombia</span>
+                <span>ACTUALMENTE</span>
+            </div>
+            <p>Estudios universitarios en Ingeniería de Sistemas y Tecnología en Desarrollo de Software.</p>
+        </article>
+    </section>
+    <section class="content-section" aria-labelledby="education-heading-certs-paula">
+        <h3 id="education-heading-certs-paula">Otros estudios relevantes</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Especialización</th>
+                    <th>Institución</th>
+                    <th>Año</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Analista de software corporación</td>
+                    <td>Corporación San José</td>
+                    <td>2022</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+                <div id="skills-paula" class="tab-content">
+    <section class="content-section" aria-labelledby="skills-heading-tech-paula">
+        <h3 id="skills-heading-tech-paula">Habilidades Técnicas</h3>
+        <div class="skills-grid">
+            <div class="skill-item"><span class="skill-name">JavaScript (Node.js, React, Angular)</span><div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Python (Django, Flask)</span><div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Go</span><div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">AWS (EC2, S3, Lambda, RDS, EKS)</span><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Docker & Kubernetes</span><div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Bases de Datos (SQL & NoSQL)</span><div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div></div>
+        </div>
+    </section>
+    <section class="content-section" aria-labelledby="skills-heading-personal-references-paula">
+        <h3 id="skills-heading-personal-references-paula">Referencias Personales</h3>
+        <ul class="soft-skills-list">
+            <li><strong>Pedro Andrés:</strong> Amigo cercano, Tel. 3201597514</li>
+            <li><strong>Marcela:</strong> Antigua compañera, Tel. 3117945861</li>
+        </ul>
+    </section>
+    <section class="content-section" aria-labelledby="skills-heading-labor-references-paula">
+        <h3 id="skills-heading-labor-references-paula">Referencias Laborales</h3>
+        <ul class="soft-skills-list">
+            <li><strong>Víctor Angarita:</strong> Empresa Telecomunicaciones SAS, Tel. 3508795410</li>
+            <li><strong>Sonia Camacho:</strong> Empresa de software, Tel. 3264857894</li>
+        </ul>
+    </section>
+</div>
+
+               <div id="portfolio-paula" class="tab-content">
+    <section class="content-section" aria-labelledby="portfolio-heading-paula">
+        <h3 id="portfolio-heading-paula">Proyectos Destacados</h3>
+        <div class="portfolio-grid">
+            <article class="portfolio-card">
+                <img src="https://www.marketresearchintellect.com/images/blogs/top-saas-management-platforms.webp" alt="Desarrollo Web">
+                <div class="portfolio-item-details">
+                    <h4>Desarrollo Web</h4>
+                    <div class="portfolio-meta"><span><strong>Tecnologías:</strong> HTML, CSS, JavaScript, React, Node.js</span><span><strong>Rol:</strong> Desarrolladora Front-end/Back-end</span></div>
+                    <p>Creación y optimización de interfaces de usuario y funcionalidades robustas para diversas aplicaciones web.</p>
+                </div>
+            </article>
+            <article class="portfolio-card">
+                <img src="https://skiller.education/wp-content/uploads/2024/03/integracion-de-ia-en-plataformas-de-analisis-de-datos-avances-y-beneficios.jpg" alt="Calidad de Software">
+                <div class="portfolio-item-details">
+                    <h4>Calidad de Software</h4>
+                    <div class="portfolio-meta"><span><strong>Tecnologías:</strong> JUnit, Selenium, Jira, Confluence</span><span><strong>Rol:</strong> Ingeniera de Calidad (QA)</span></div>
+                    <p>Implementación de estrategias y herramientas para asegurar la calidad y fiabilidad de los productos de software.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="walter-profile" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" title="Cerrar">&times;</span>
+
+            <div class="profile-header">
+                <div class="profile-pic">
+                    <img src="https://i.postimg.cc/85YT3HnL/461536381-10161565977446649-529995703096869089-n.jpg">
+                </div>
+                <div class="profile-name">
+                    <h2>WALTER FERNANDO VELASQUEZ SANTANA</h2>
+                    <p class="profile-title">Ingeniero de Sistemas</p>
+                    <div class="profile-contact">
+                        <a href="mailto:waltervelasquez92@gmail.com" title="Enviar correo a WALTER FERNANDO VELASQUEZ SANTANA">waltervelasquez92@gmail.com</a>
+                        <a href="tel:+573115795140" title="Llamar a WALTER FERNANDO VELASQUEZ SANTANA">+57 311 5795140</a>
+                    </div>
+                    </div>
+            </div>
+
+            <nav class="profile-tabs">
+                <button class="tab-btn active" data-tab="summary-wv" aria-selected="true">Resumen</button>
+                <button class="tab-btn" data-tab="experience-wv" aria-selected="false">Experiencia</button>
+                <button class="tab-btn" data-tab="education-wv" aria-selected="false">Educación</button>
+                <button class="tab-btn" data-tab="skills-wv" aria-selected="false">Información Adicional</button>
+                <button class="tab-btn" data-tab="portfolio-wv" aria-selected="false">Portafolio</button>
+            </nav>
+
+            <div class="profile-content">
+                <div id="summary-wv" class="tab-content active">
+                    <section class="content-section" aria-labelledby="summary-heading-wv">
+                        <h3 id="summary-heading-wv">Resumen Profesional</h3>
+                        <p>Persona responsable, comprometida con mis labores y con gran habilidad de aprender y adaptación a los cambios.</p>
+                        <p><strong>Edad:</strong> 33 AÑOS</p>
+                    </section>
+                </div>
+
+                <div id="experience-wv" class="tab-content">
+                    <section class="content-section" aria-labelledby="experience-heading-wv">
+                        <h3 id="experience-heading-wv">Experiencia Laboral</h3>
+                        <article class="experience-item">
+                            <h4>Cocinero Comischef, Domiciliario</h4>
+                            <div class="experience-meta">
+                                <span>Restaurante WOK LAO KAO</span>
+                                <span>10 Años 3 meses</span>
+                            </div>
+                            <p>Funciones:</p>
+                             <ul>
+                                <li>Preparación de productos desde cero para servicio.</li>
+                                <li>Montaje de misamplaz cocinero, revisión de requisición e Inventarios, entrenamiento a personal nuevo, domicilios.</li>
+                                <li>Atención al cliente.</li>
+                            </ul>
+                            <p>Jefe Inmediato: Juan Puing, Celular: 3102230567</p>
+                        </article>
+                        <article class="experience-item">
+                            <h4>Miembro de equipo</h4>
+                            <div class="experience-meta">
+                                <span>KFC Colombia</span>
+                                <span>Actual 8 meses, Reintegro 3 años y 5 meses</span>
+                            </div>
+                            <p>Funciones:</p>
+                             <ul>
+                                <li>Servicio al cliente, procedimientos de cocina.</li>
+                                <li>Cocinero, apoyo a superiores.</li>
+                            </ul>
+                            <p>Jefe Inmediato: William Gracia, Celular: 3183831211</p>
+                        </article>
+                        <article class="experience-item">
+                            <h4>Auxiliar de bodega</h4>
+                            <div class="experience-meta">
+                                <span>BARVAL T.A.T</span>
+                                <span>2 años</span>
+                            </div>
+                            <p>Funciones:</p>
+                             <ul>
+                                <li>Alistamiento y entrega de pedidos.</li>
+                            </ul>
+                        </article>
+                        <article class="experience-item">
+                            <h4>Mesero - Cajero</h4>
+                            <div class="experience-meta">
+                                <span>CLUB PUEBLO VIEJO</span>
+                                <span>1 Año y 9 meses</span>
+                            </div>
+                            <p>Funciones:</p>
+                             <ul>
+                                <li>Manejo de caja en Hoyo 6.</li>
+                            </ul>
+                            <p>Jefe Inmediato: Sra. Sonia, Teléfono: 8640065</p>
+                        </article>
+                    </section>
+                </div>
+
+                <div id="education-wv" class="tab-content">
+                    <section class="content-section" aria-labelledby="education-heading-academic-wv">
+                        <h3 id="education-heading-academic-wv">Formación Académica</h3>
+                        <article class="education-item">
+                            <h4>Técnico Profesional en Operación y Mantenimiento de Base de Datos</h4>
+                            <div class="education-meta">
+                                <span>FUNDACION UNIVERSITARIA COMPENSAR</span>
+                                <span>2024</span>
+                            </div>
+                            <p>Técnico profesional en el área de operación y mantenimiento de bases de datos.</p>
+                        </article>
+                         <article class="education-item">
+                            <h4>Bachiller</h4>
+                            <div class="education-meta">
+                                <span>INSTITUTO TRIANGULO</span>
+                                <span>2010</span>
+                            </div>
+                            <p>Educación secundaria completa.</p>
+                        </article>
+                    </section>
+                </div>
+
+                <div id="skills-wv" class="tab-content">
+                    <section class="content-section" aria-labelledby="skills-heading-tech-wv">
+                        <h3 id="skills-heading-tech-wv">Habilidades</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item"><span class="skill-name">Comunicación</span><div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div></div>
+                            <div class="skill-item"><span class="skill-name">Trabajo en Equipo</span><div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div></div>
+                            <div class="skill-item"><span class="skill-name">Resolución de Problemas</span><div class="skill-bar"><div class="skill-progress" style="width: 82%"></div></div></div>
+                            <div class="skill-item"><span class="skill-name">Adaptabilidad</span><div class="skill-bar"><div class="skill-progress" style="width: 87%"></div></div></div>
+                            <div class="skill-item"><span class="skill-name">Compromiso</span><div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div></div>
+                            <div class="skill-item"><span class="skill-name">Atención al Cliente</span><div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div></div>
+                        </div>
+                    </section>
+                     <section class="content-section" aria-labelledby="skills-heading-references-wv">
+                        <h3 id="skills-heading-references-wv">Referencias Personales</h3>
+                        <ul class="soft-skills-list">
+                            <li><strong>Lalo Gonzales:</strong> Conductor, Celular: 3187676339</li>
+                            <li><strong>Johana Puentes:</strong> Asesora de ventas, Celular: 3106182964</li>
+                            <li><strong>Jhon Pinzon Aguirre:</strong> Ingeniero mecánico, Celular: 3125417238</li>
+                        </ul>
+                    </section>
+                     <section class="content-section" aria-labelledby="skills-heading-family-references-wv">
+                        <h3 id="skills-heading-family-references-wv">Referencias Familiares</h3>
+                        <ul class="soft-skills-list">
+                            <li><strong>Deicy Mabel Santana:</strong> Mamá, Celular: 3142747998</li>
+                            <li><strong>Laura Santana:</strong> Hermana, Celular: 3214998020</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <div id="portfolio-wv" class="tab-content">
+                    <section class="content-section" aria-labelledby="portfolio-heading-wv">
+                        <h3 id="portfolio-heading-wv">Proyectos Destacados</h3>
+                        <div class="portfolio-grid">
+                            <article class="portfolio-card">
+                                <img src="https://d31yv7tlobjzhn.cloudfront.net/imagenes/1404/large_dashboard-de-ventas-en-excel.png" alt="Dashboard de Ventas Interactivo">
+                                <div class="portfolio-item-details">
+                                    <h4>Dashboard de Ventas Interactivo</h4>
+                                    <div class="portfolio-meta"><span><strong>Herramientas:</strong> Power BI, SQL</span><span><strong>Industria:</strong> Retail</span></div>
+                                    <p>Desarrollo de un dashboard integral para el seguimiento de ventas, inventario y rendimiento de productos.</p>
+                                    </div>
+                            </article>
+                            <article class="portfolio-card">
+                                <img src="https://qindice.com/wp-content/uploads/2020/04/el-consumo.png" alt="Análisis de Segmentación de Clientes">
+                                <div class="portfolio-item-details">
+                                    <h4>Análisis de Segmentación de Clientes</h4>
+                                    <div class="portfolio-meta"><span><strong>Tecnologías:</strong> Python (Scikit-learn), Jupyter</span><span><strong>Industria:</strong> E-commerce</span></div>
+                                    <p>Aplicación de algoritmos de clustering para segmentar clientes y personalizar campañas de marketing.</p>
+                                    </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Espera a que el DOM esté completamente cargado antes de ejecutar el script
+        document.addEventListener('DOMContentLoaded', function() {
+            // Selecciona todos los botones que abren el perfil de un miembro
+            const profileButtons = document.querySelectorAll('.view-profile-btn');
+            // Selecciona todos los modales (ventanas emergentes de perfil)
+            const modals = document.querySelectorAll('.modal');
+            // Selecciona todos los botones de cerrar modal
+            const closeButtons = document.querySelectorAll('.close-modal');
+
+            // Itera sobre cada botón de perfil para añadir un 'event listener'
+            profileButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault(); // Previene el comportamiento por defecto del enlace (navegar a #)
+                    const memberId = this.getAttribute('data-member'); // Obtiene el ID del miembro (ej. 'paula', 'walter')
+                    const modalToOpen = document.getElementById(`${memberId}-profile`); // Construye el ID del modal a abrir
+                    if (modalToOpen) {
+                        // Restablece las pestañas del modal para que la primera esté activa al abrirlo
+                        const firstTabButton = modalToOpen.querySelector('.profile-tabs .tab-btn');
+                        const firstTabContentId = firstTabButton.getAttribute('data-tab');
+
+                        // Desactiva todas las pestañas
+                        modalToOpen.querySelectorAll('.profile-tabs .tab-btn').forEach(btn => {
+                            btn.classList.remove('active');
+                            btn.setAttribute('aria-selected', 'false');
+                        });
+                        // Activa la primera pestaña
+                        firstTabButton.classList.add('active');
+                        firstTabButton.setAttribute('aria-selected', 'true');
+
+                        // Oculta todos los contenidos de las pestañas
+                        modalToOpen.querySelectorAll('.profile-content .tab-content').forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+                        // Muestra el contenido de la primera pestaña
+                        modalToOpen.querySelector(`.profile-content #${firstTabContentId}`).classList.add('active');
+
+                        modalToOpen.style.display = 'block'; // Muestra el modal
+                        document.body.style.overflow = 'hidden'; // Evita el scroll del cuerpo de la página
+                    } else {
+                        console.error(`Modal con ID '${memberId}-profile' no encontrado.`);
+                    }
+                });
+            });
+
+            // Itera sobre cada botón de cerrar modal para añadir un 'event listener'
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.closest('.modal').style.display = 'none'; // Oculta el modal más cercano
+                    document.body.style.overflow = 'auto'; // Restaura el scroll del cuerpo de la página
+                });
+            });
+
+            // Cierra el modal si se hace clic fuera de su contenido
+            window.addEventListener('click', function(event) {
+                modals.forEach(modal => {
+                    if (event.target === modal) { // Si el clic es directamente en el fondo del modal
+                        modal.style.display = 'none'; // Oculta el modal
+                        document.body.style.overflow = 'auto'; // Restaura el scroll
+                    }
+                });
+            });
+
+            // Lógica para cambiar entre pestañas dentro del modal
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalContent = this.closest('.modal-content'); // Encuentra el contenedor del modal
+                    if (!modalContent) return; // Si no lo encuentra, sale
+
+                    const tabId = this.getAttribute('data-tab'); // Obtiene el ID de la pestaña a mostrar
+                    const targetTabContent = modalContent.querySelector(`.profile-content #${tabId}`); // Encuentra el contenido de la pestaña
+
+                    // Desactiva todas las pestañas del modal actual
+                    modalContent.querySelectorAll('.profile-tabs .tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
+                    // Activa la pestaña clickeada
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
+
+                    // Oculta todos los contenidos de las pestañas del modal actual
+                    modalContent.querySelectorAll('.profile-content .tab-content').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    // Muestra el contenido de la pestaña clickeada
+                    if (targetTabContent) {
+                        targetTabContent.classList.add('active');
+                    } else {
+                         console.error(`Tab content with ID '${tabId}' not found in this modal.`);
+                    }
+                });
+            });
+
+            // Lógica para el formulario de contacto
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Previene el envío real del formulario
+
+                    // Aquí puedes añadir validación de formulario si lo deseas
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+
+                    if (name && email && subject && message) {
+                        alert("Mensaje enviado con éxito.\n\nGracias por escribirnos.");
+                        // Opcional: Limpiar el formulario después de enviar
+                        contactForm.reset();
+                    } else {
+                        alert("Por favor, rellena todos los campos del formulario.");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
